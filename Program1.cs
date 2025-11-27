@@ -49,7 +49,7 @@ namespace MyConsole
             {
                 if (i != (contLevels - 1))
                 {
-                    levels.Add(priceLevels);
+                    levels.Add(priceLevels);                //присваивания значений элементам списка кроме последнего !
                     priceLevels -= stepLevels;
                 }
                 else
