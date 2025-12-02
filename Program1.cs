@@ -64,6 +64,9 @@ namespace MyConsole
 
         static List<decimal>levels;
 
+        //===========================================================Methods========================================================================
+        #region Methods
+
         static void WriteLine()
         {
             Console.WriteLine("Количество элементов в списке: " + levels.Count.ToString());
@@ -81,5 +84,8 @@ namespace MyConsole
             string str = Console.ReadLine();
             return str;
         }
+
+        #endregion
+
     }
 }
