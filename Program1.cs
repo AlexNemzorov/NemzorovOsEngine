@@ -11,7 +11,7 @@ namespace MyConsole
     {
         static void Main(string[] args)
         {
-            levels = new List<decimal>();
+            levels = new List<Level>();
 
             WriteLine();
 
@@ -30,34 +30,15 @@ namespace MyConsole
 
             priceLower = decimal.Parse(str);                  //значение нижней границы диапазона
 
+
             str = ReadLine("задайте точность инструмента: ");
 
             int accTool = Convert.ToInt32(str);                       //кол. знаков после запятой
 
 
 
-            stepLevels = (priceUp - priceLower) / (contLevels-1);  //вычисление шага уровня
 
-            stepLevels = Math.Round(stepLevels,accTool);                        //приведение шага к заданной точности
-
-           
-            Console.WriteLine("Шаг уровня: " + stepLevels);
-
-
-            decimal priceLevels = priceUp;
-
-            for (int i = 0; i < contLevels; i++)                 //цикл присваивания значений элементам списка
-            {
-                if (i != (contLevels - 1))
-                {
-                    levels.Add(priceLevels);                //присваивания значений элементам списка кроме последнего !
-                    priceLevels -= stepLevels;
-                }
-                else
-                {
-                    levels.Add(priceLower);                // присваивание значения нижней границы диапазано последнему элементу списка
-                }
-            }
+            levels = Level.CalculateLevels(priceUp, priceLower, contLevels, accTool);
             
             WriteLine();
             
@@ -66,7 +47,10 @@ namespace MyConsole
         //==========================================================Fields=========================================================================
         #region Fields
 
-        static List<decimal>levels;
+        /// <summary>
+        /// Список уровней
+        /// </summary>
+        static List<Level>levels;
 
         /// <summary>
         /// Количество уровней
@@ -86,7 +70,7 @@ namespace MyConsole
         /// <summary>
         /// шаг уровня
         /// </summary>
-        static decimal stepLevels;
+       // static decimal stepLevels;
 
         #endregion
 
@@ -99,7 +83,7 @@ namespace MyConsole
 
             for (int i = 0; i < levels.Count; i++)
             {
-                Console.WriteLine("Уровень "+ (i+1) + " = " + levels[i]);
+                Console.WriteLine("Уровень "+ (i+1) + " = " + levels[i].PriceLevel);
 
             }
         }
