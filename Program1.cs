@@ -63,6 +63,7 @@ namespace MyConsole
         }
 
         static List<decimal>levels;
+
         static void WriteLine()
         {
             Console.WriteLine("Количество элементов в списке: " + levels.Count.ToString());
