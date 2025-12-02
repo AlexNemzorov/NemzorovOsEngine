@@ -17,17 +17,18 @@ namespace MyConsole
 
             string str = ReadLine("Введите количество уровней: ");
             
-            int contLevels = Convert.ToInt32(str);                   // количество уровней
+           
+            contLevels = Convert.ToInt32(str);                   // количество уровней
 
 
             str = ReadLine("Задайте верхнюю цену: ");
 
-            decimal priceUp = decimal.Parse(str);                   //значение верхней границы диапазона
+            priceUp = decimal.Parse(str);                   //значение верхней границы диапазона
 
 
             str = ReadLine("задайте нижнюю цену: ");
 
-            decimal priceLower = decimal.Parse(str);                  //значение нижней границы диапазона
+            priceLower = decimal.Parse(str);                  //значение нижней границы диапазона
 
             str = ReadLine("задайте точность инструмента: ");
 
@@ -35,7 +36,7 @@ namespace MyConsole
 
 
 
-            decimal stepLevels = (priceUp - priceLower) / (contLevels-1);  //вычисление шага уровня
+            stepLevels = (priceUp - priceLower) / (contLevels-1);  //вычисление шага уровня
 
             stepLevels = Math.Round(stepLevels,accTool);                        //приведение шага к заданной точности
 
@@ -62,7 +63,32 @@ namespace MyConsole
             
         }
 
+        //==========================================================Fields=========================================================================
+        #region Fields
+
         static List<decimal>levels;
+
+        /// <summary>
+        /// Количество уровней
+        /// </summary>
+        static int contLevels;
+
+        /// <summary>
+        /// значение верхней границы диапазона
+        /// </summary>
+        static decimal priceUp;
+
+        /// <summary>
+        /// Значение нижней границы диапазона
+        /// </summary>
+        static decimal priceLower;
+
+        /// <summary>
+        /// шаг уровня
+        /// </summary>
+        static decimal stepLevels;
+
+        #endregion
 
         //===========================================================Methods========================================================================
         #region Methods
