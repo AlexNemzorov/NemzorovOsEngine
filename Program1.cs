@@ -4,6 +4,8 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+
 
 namespace MyConsole
 {
@@ -11,37 +13,41 @@ namespace MyConsole
     {
         static void Main(string[] args)
         {
-            levels = new List<Level>();
+            Positions positions = new Positions();
 
-            WriteLine();
+            /* levels = new List<Level>();
 
-            string str = ReadLine("Введите количество уровней: ");
-            
-           
-            contLevels = Convert.ToInt32(str);                   // количество уровней
+             WriteLine();
 
-
-            str = ReadLine("Задайте верхнюю цену: ");
-
-            priceUp = decimal.Parse(str);                   //значение верхней границы диапазона
+             string str = ReadLine("Введите количество уровней: ");
 
 
-            str = ReadLine("задайте нижнюю цену: ");
-
-            priceLower = decimal.Parse(str);                  //значение нижней границы диапазона
+             contLevels = Convert.ToInt32(str);                   // количество уровней
 
 
-            str = ReadLine("задайте точность инструмента: ");
+             str = ReadLine("Задайте верхнюю цену: ");
 
-            int accTool = Convert.ToInt32(str);                       //кол. знаков после запятой
-
-
+             priceUp = decimal.Parse(str);                   //значение верхней границы диапазона
 
 
-            levels = Level.CalculateLevels(priceUp, priceLower, contLevels, accTool);
-            
-            WriteLine();
-            
+             str = ReadLine("задайте нижнюю цену: ");
+
+             priceLower = decimal.Parse(str);                  //значение нижней границы диапазона
+
+
+             str = ReadLine("задайте точность инструмента: ");
+
+             int accTool = Convert.ToInt32(str);                       //кол. знаков после запятой
+
+
+
+
+             levels = Level.CalculateLevels(priceUp, priceLower, contLevels, accTool);
+
+             WriteLine();
+            */
+
+           Console.ReadLine();
         }
 
         //==========================================================Fields=========================================================================

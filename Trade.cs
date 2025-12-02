@@ -33,12 +33,29 @@ namespace MyConsole
         /// </summary>
         public string Portfolio = "";
 
+
+        /// <summary>
+        /// Номер ордера
+        /// </summary>
+        static int OrderNumber = 0;
+
+        /// <summary>
+        /// Суммарный объем позиции
+        /// </summary>
+        decimal PositionVolume = 0;
+
+        /// <summary>
+        /// Средняя цена позиции
+        /// </summary>
+        decimal PositionPrice = 0;
+
         #endregion
 
         //=============================================================Properties==================================================================
 
         #region Properties
         /// <summary>
+        /// Объем сделки
         /// Объем
         /// </summary>
         public decimal Volume

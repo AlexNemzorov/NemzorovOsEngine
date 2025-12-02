@@ -29,12 +29,12 @@ namespace MyConsole
 
         #endregion
 
-        //=============================================================Fields==================================================================
-        #region Fields
+        //=============================================================Method==================================================================
+        #region Method
 
         public static List<Level> CalculateLevels(decimal priceUp, decimal priceLower, int count, int accTool)
         {
-            decimal stepLevels = (priceUp - priceLower) / (count - 1);  //вычисление шага уровня
+            decimal stepLevels = (priceUp - priceLower) / (count - 1);           //вычисление шага уровня
 
             stepLevels = Math.Round(stepLevels, accTool);                        //приведение шага к заданной точности
 
@@ -45,13 +45,13 @@ namespace MyConsole
 
             decimal priceLevels = priceUp;
 
-            for (int i = 0; i < count; i++)                 //цикл присваивания значений элементам списка
+            for (int i = 0; i < count; i++)                                      //цикл присваивания значений элементам списка
             {
                 Level level = new Level();
 
                 if (i != (count - 1))
                 {
-                    level.PriceLevel = priceLevels;                //присваивания значений элементам списка кроме последнего !
+                    level.PriceLevel = priceLevels;                              //присваивания значений элементам списка кроме последнего !
 
                     levels.Add(level);
 
@@ -59,7 +59,7 @@ namespace MyConsole
                 }
                 else
                 {
-                    level.PriceLevel = priceLower;                // присваивание значения нижней границы диапазано последнему элементу списка
+                    level.PriceLevel = priceLower;                               // присваивание значения нижней границы диапазано последнему элементу списка
 
                     levels.Add(level);
                 }

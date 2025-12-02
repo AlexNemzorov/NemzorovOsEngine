@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using Timer = System.Timers.Timer;
 
 namespace MyConsole
 {
@@ -13,7 +14,9 @@ namespace MyConsole
     {
         public Positions() 
         {
-           System.Timers.Timer timer = new System.Timers.Timer();
+            Console.WriteLine("Номер сделки |" + "Операция       |" + "Цена    |" + "Кол-во   |" + "Объем позиции|" + "Ср. цена позиции |" );
+
+           Timer timer = new Timer();
 
             timer.Interval = 1000;
 
@@ -23,31 +26,67 @@ namespace MyConsole
 
         }
 
+      
         Random rnd = new Random();
+
+        /// <summary>
+        /// Суммарный объем позиции
+        /// </summary>
+        decimal PositionVolume = 0;
+
+        /// <summary>
+        /// Средняя цена позиции
+        /// </summary>
+        decimal PositionPrice = 0;
+        /// <summary>
+        /// Номер сделки
+        /// </summary>
+        int nTrade = 0;
+
+
+        /// <summary>
+        /// Направление сделки
+        /// </summary>
+        enum DirectTransaction
+        {
+            Купля,
+            Продажа
+        }
+
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Trade trade = new Trade();
+            
 
             int num = rnd.Next(-10, 10);
 
+            byte i = 0;
+
             if (num > 0)
             {
-                // long
+                i = 0;
             }
             else if (num < 0)
-            { 
-                //short
+            {
+                i = 1;
             }
-
+            else if (num == 0)
+            {
+                return;
+            }
+     
+            nTrade++; 
+            
             trade.Volume = Math.Abs(num);
 
             trade.Price = rnd.Next(7000, 8000);
 
+            PositionPrice = (PositionPrice* PositionVolume + num * trade.Price)/(PositionVolume + num);
+           
+            PositionVolume += num;                      //суммирует общую позицию
 
-            string str = "Volume = " +trade.Volume.ToString() + "/ Price = " + trade.Price.ToString();
-
-            Console.WriteLine(str);
+            Console.WriteLine(nTrade.ToString() + '\t' + '\t' + (DirectTransaction)i + '\t' + '\t' + trade.Price.ToString() + '\t' + trade.Volume.ToString() + '\t' + PositionVolume + '\t' + '\t' + Math.Round(PositionPrice,3));
         }
     }
-}
+} 
