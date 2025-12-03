@@ -43,6 +43,7 @@ namespace MyConsole
         /// </summary>
         int nTrade = 0;
 
+        decimal PV = 0;
 
         /// <summary>
         /// Направление сделки
@@ -75,16 +76,19 @@ namespace MyConsole
             {
                 return;
             }
-     
+    
             nTrade++; 
             
             trade.Volume = Math.Abs(num);
 
-            trade.Price = rnd.Next(7000, 8000);
+            trade.Price = rnd.Next(100, 200);
 
-            PositionPrice = (PositionPrice* PositionVolume + num * trade.Price)/(PositionVolume + num);
-           
             PositionVolume += num;                      //суммирует общую позицию
+
+            PV += num * trade.Price;
+
+            PositionPrice = PV /PositionVolume ;
+           
 
             Console.WriteLine(nTrade.ToString() + '\t' + '\t' + (DirectTransaction)i + '\t' + '\t' + trade.Price.ToString() + '\t' + trade.Volume.ToString() + '\t' + PositionVolume + '\t' + '\t' + Math.Round(PositionPrice,3));
         }
