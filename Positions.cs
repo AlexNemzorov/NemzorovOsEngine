@@ -14,7 +14,7 @@ namespace MyConsole
     {
         public Positions() 
         {
-            Console.WriteLine("Номер сделки |" + "Операция       |" + "Цена    |" + "Кол-во   |" + "Объем позиции|" + "Ср. цена позиции |" );
+            Console.WriteLine("Номер сделки |" + "Операция       |" + "Цена    |" + "Кол-во  |" + "Объем позиции|" + "Ср. цена позиции |" );
 
            Timer timer = new Timer();
 
@@ -44,7 +44,6 @@ namespace MyConsole
         /// </summary>
         int nTrade = 0;
 
-      //  decimal PV = 0;
 
         /// <summary>
         /// Направление сделки
@@ -85,18 +84,21 @@ namespace MyConsole
 
             trade.Volume = Math.Abs(num);
 
-            trade.Price = rnd.Next(100, 200);
+            trade.Price = rnd.Next(70000, 80000);
 
             if ((PositionVolume + num) != 0)
             {
                 PositionPrice = (PositionPrice * PositionVolume + num * trade.Price) / (PositionVolume + num);
             }
-           
+            else 
+            {
+                PositionPrice = 0;
+            }
 
-                PositionVolume += num;                      //суммирует общую позицию
+            PositionVolume += num;                      //суммирует общую позицию
 
 
-            Console.WriteLine(nTrade.ToString() + '\t' + '\t' + (DirectTransaction)i + '\t' + '\t' + trade.Price.ToString() + '\t' + trade.Volume.ToString() + '\t' + PositionVolume + '\t' + '\t' + Math.Round(PositionPrice,3));
+            Console.WriteLine(nTrade.ToString() + '\t' + '\t' + (DirectTransaction)i + '\t' + '\t' + trade.Price.ToString() + '\t' + trade.Volume.ToString() + '\t' + PositionVolume + '\t' + '\t' + Math.Round(PositionPrice,0));
         }
         #endregion
     }
