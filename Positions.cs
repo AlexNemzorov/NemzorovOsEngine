@@ -25,8 +25,9 @@ namespace MyConsole
             timer.Start();
 
         }
+        //==========================================================Fields=========================================================================
+        #region Fields
 
-      
         Random rnd = new Random();
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace MyConsole
         /// </summary>
         int nTrade = 0;
 
-        decimal PV = 0;
+      //  decimal PV = 0;
 
         /// <summary>
         /// Направление сделки
@@ -53,12 +54,15 @@ namespace MyConsole
             Купля,
             Продажа
         }
+        #endregion
 
+        //===========================================================Methods========================================================================
+        #region Methods
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Trade trade = new Trade();
-            
+
 
             int num = rnd.Next(-10, 10);
 
@@ -76,21 +80,24 @@ namespace MyConsole
             {
                 return;
             }
-    
-            nTrade++; 
-            
+
+            nTrade++;
+
             trade.Volume = Math.Abs(num);
 
             trade.Price = rnd.Next(100, 200);
 
-            PositionVolume += num;                      //суммирует общую позицию
-
-            PV += num * trade.Price;
-
-            PositionPrice = PV /PositionVolume ;
+            if ((PositionVolume + num) != 0)
+            {
+                PositionPrice = (PositionPrice * PositionVolume + num * trade.Price) / (PositionVolume + num);
+            }
            
+
+                PositionVolume += num;                      //суммирует общую позицию
+
 
             Console.WriteLine(nTrade.ToString() + '\t' + '\t' + (DirectTransaction)i + '\t' + '\t' + trade.Price.ToString() + '\t' + trade.Volume.ToString() + '\t' + PositionVolume + '\t' + '\t' + Math.Round(PositionPrice,3));
         }
+        #endregion
     }
 } 
